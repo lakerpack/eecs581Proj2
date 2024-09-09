@@ -5,18 +5,18 @@ class Ship:
         self.is_destroyed = None
 
 dim=10
-board={
-    "A":[None]*dim,
-    "B":[None]*dim,
-    "C":[None]*dim,
-    "D":[None]*dim,
-    "E":[None]*dim,
-    "F":[None]*dim,
-    "G":[None]*dim,
-    "H":[None]*dim,
-    "I":[None]*dim,
-    "J":[None]*dim
-}
+letter_ind_map={
+    "A":0
+    "B":1   
+    "C":2   
+    "D":3   
+    "E":4   
+    "F":5   
+    "G":6   
+    "H":7   
+    "I":8   
+    "J":9   
+}   
 
 num_ships_per_player=input("[Player 1 & 2] Enter number of ships per player (1-5): ")
 while not(num_ships_per_player.isdigit()) or ((1<=int(num_ships_per_player)<=5) == False):
