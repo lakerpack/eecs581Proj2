@@ -18,4 +18,14 @@ board={
     "I":[None]*dim,
     "J":[None]*dim
 }
-print(board)
+
+num_ships_p1=input("[Player 1] Enter number of ships (1-5): ")
+while not(num_ships_p1.isdigit()) or ((1<=int(num_ships_p1)<=5) == False):
+    num_ships_p1=input("[Player 1] That is not valid. Enter number of ships (1-5): ")
+num_ships_p1=int(num_ships_p1)
+
+num_ships_p2=input("[Player 2] Enter number of ships (1-5): ")
+while not(num_ships_p2.isdigit()) or ((1<=int(num_ships_p2)<=5) == False):
+    num_ships_p2=input("[Player 2] That is not valid. Enter number of ships (1-5): ")
+num_ships_p2=int(num_ships_p2)
+
