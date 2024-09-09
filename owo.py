@@ -1,14 +1,14 @@
 dim=10
 board={
-    "A":[None]*10,
-    "B":[None]*10,
-    "C":[None]*10,
-    "D":[None]*10,
-    "E":[None]*10,
-    "F":[None]*10,
-    "G":[None]*10,
-    "H":[None]*10,
-    "I":[None]*10,
-    "J":[None]*10
+    "A":[None]*dim,
+    "B":[None]*dim,
+    "C":[None]*dim,
+    "D":[None]*dim,
+    "E":[None]*dim,
+    "F":[None]*dim,
+    "G":[None]*dim,
+    "H":[None]*dim,
+    "I":[None]*dim,
+    "J":[None]*dim
 }
 print(board)
