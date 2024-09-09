@@ -1,0 +1,14 @@
+dim=10
+board={
+    "A":[None]*10,
+    "B":[None]*10,
+    "C":[None]*10,
+    "D":[None]*10,
+    "E":[None]*10,
+    "F":[None]*10,
+    "G":[None]*10,
+    "H":[None]*10,
+    "I":[None]*10,
+    "J":[None]*10
+}
+print(board)
