@@ -20,10 +20,23 @@ class Game:
     def run(self):
 
         self._game_setup()
+        cur_player = self.player1
+        next_player = self.player2
 
+        is_game_over = False
 
+        while not is_game_over:
+
+            next_player.show_board(True)
+            # TODO: Validate input
+            tile = input("Input tile: ")
+            next_player.perform_hit(tile)
+            
+            cur_player = self.player1 if cur_player.player_num == self.player2.player_num else self.player2
+            is_game_over = cur_player.has_lost()
         
+        winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
+        print(f"Player {winner.player_num} has won!")
         
-    
     def game_stats():
         pass
