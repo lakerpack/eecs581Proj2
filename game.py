@@ -1,4 +1,5 @@
 from player import Player
+from util import is_valid_tile
 
 class Game:
     def __init__(self):
@@ -17,6 +18,14 @@ class Game:
         self.player1.place_ships(self.num_ships_per_player)
         self.player2.place_ships(self.num_ships_per_player)
     
+    def _get_input_tile(self):
+        valid_tile = False
+        while not valid_tile:
+            tile = input("Input tile: ")
+            valid_tile = is_valid_tile(tile)
+        
+        return tile
+    
     def run(self):
 
         self._game_setup()
@@ -28,12 +37,12 @@ class Game:
         while not is_game_over:
 
             next_player.show_board(True)
-            # TODO: Validate input
-            tile = input("Input tile: ")
+            tile = self._get_input_tile()
+
             next_player.perform_hit(tile)
+            is_game_over = next_player.has_lost()
             
-            cur_player = self.player1 if cur_player.player_num == self.player2.player_num else self.player2
-            is_game_over = cur_player.has_lost()
+            cur_player, next_player = next_player, cur_player
         
         winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
         print(f"Player {winner.player_num} has won!")
