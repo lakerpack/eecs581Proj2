@@ -53,7 +53,7 @@ class Player:
 
             self.show_board(False)
 
-            print("Choose (Starting Tile, Orientation) of ship {i} with length {i}")
+            print(f"Choose (Starting Tile, Orientation) of ship {i} with length {i}")
             print("Starting Tile has format: Row_Letter+Column_Number. Orientation has format: H or V (Ex: B5,V) - ", end="")
             placement = input()
 
