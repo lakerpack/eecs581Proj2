@@ -23,7 +23,7 @@ class Game:
         print()
         print()
         print()
-    
+    '''
     def _get_input_tile(self):
         valid_tile = False
         while not valid_tile:
@@ -32,6 +32,14 @@ class Game:
             if not valid_tile:
                 print("Invalid input. Please enter a valid tile to attack (e.g., A1): ")
         return tile
+    '''
+    def _get_input_tile(self):
+        while True:
+            tile = input("Tile to attack (e.g., A1): ").strip().upper()
+            if is_valid_tile(tile):
+                return tile
+            else:
+                print("Invalid input. Please enter a valid tile to attack (e.g., A1 to J10)")
     
     def run(self):
         self._game_setup()
