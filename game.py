@@ -66,7 +66,8 @@ class Game:
                 input("Press Enter to switch players...\n")
                 cur_player, next_player = next_player, cur_player
         
-        winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
+        #winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
+        winner = cur_player
         print(f"Game Over! Player {winner.player_num} has won!\n")
         
     def game_stats():
