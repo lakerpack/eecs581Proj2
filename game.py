@@ -21,6 +21,8 @@ class Game:
         while not valid_tile:
             tile = input("Input tile: ")
             valid_tile = is_valid_tile(tile)
+            if not valid_tile:
+                print("Invalid input. Please enter a valid tile")
         
         return tile
     
