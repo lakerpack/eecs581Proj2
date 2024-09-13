@@ -74,7 +74,7 @@ class Board:
             print(f"{row_label} ", end="")
             for j in range(10):
                 tile = board[i][j]
-                print("1" if tile.is_ship() else "O", end=" ")
+                print(tile.get_ship_id() if tile.is_ship() else "O", end=" ")
             print()
 
     def _show_double_board(self):
@@ -98,7 +98,7 @@ class Board:
                 if tile.is_hit:
                     print("!" if tile.is_ship() else "0", end=" ")
                 else:
-                    print("1" if tile.is_ship() else "O", end=" ")
+                    print(tile.get_ship_id() if tile.is_ship() else "O", end=" ")
             print()
 
     def are_ships_destroyed(self):

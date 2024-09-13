@@ -51,7 +51,7 @@ class Game:
         while not is_game_over:
             print(f"\nPlayer {cur_player.player_num}'s turn")
             cur_player.show_board(True)
-            print('"X" represents a miss and "!" represents a hit ("1" represents your ship tiles)')
+            print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
 
             tile = self._get_input_tile()
 
