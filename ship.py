@@ -12,4 +12,4 @@ class Ship:
         return all([tile.is_hit for tile in self.tiles])
     
     def print_destroyed_message(self):
-        print(f"Ship of length {self.id} has been sunk!")
+        print(f"***** Size {self.id} ship has been sunk! *****")

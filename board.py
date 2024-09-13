@@ -41,14 +41,15 @@ class Board:
         tile = self.board[x][y]
         tile.is_hit = True
 
+        print()
         if tile.is_ship():
-            print("Hit a ship!")
+            print("** Hit a ship! **")
             ship = [ship for ship in self.ships if ship.get_id() == tile.get_ship_id()][0]
             if ship.is_destroyed():
                 ship.print_destroyed_message()
             return True
         else:
-            print("You missed!")
+            print("*--You missed!--*")
             return False
 
     def record_opponent_hit(self, tile, is_hit):

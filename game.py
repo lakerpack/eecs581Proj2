@@ -13,13 +13,13 @@ class Game:
         num_ships_per_player = int(num_ships_per_player)
 
         self.player1.place_ships(num_ships_per_player)
-        input("Press Enter to switch to Player 2...")
+        input("Press Enter to switch to Player 2...\n")
         print()
         print()
         print()
 
         self.player2.place_ships(num_ships_per_player)
-        input("Press Enter to start the game...")
+        input("Press Enter to start the game...\n")
         print()
         print()
         print()
@@ -49,7 +49,7 @@ class Game:
         is_game_over = False
 
         while not is_game_over:
-            print(f"\nPlayer {cur_player.player_num}'s turn")
+            print(f"Player {cur_player.player_num}'s turn\n")
             cur_player.show_board(True)
             print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
 
@@ -63,11 +63,11 @@ class Game:
             is_game_over = next_player.has_lost()
             
             if not is_game_over:
-                input("Press Enter to switch players...")
+                input("Press Enter to switch players...\n")
                 cur_player, next_player = next_player, cur_player
         
         winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
-        print(f"\nGame Over! Player {winner.player_num} has won!")
+        print(f"Game Over! Player {winner.player_num} has won!\n")
         
     def game_stats():
         pass
