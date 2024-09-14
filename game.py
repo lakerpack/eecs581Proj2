@@ -55,7 +55,7 @@ class Game:
                 print("Invalid input. Please enter a valid tile to attack (e.g., A1 to J10)")
     
     def run(self):
-         ''' 
+        ''' 
         This function will run the game loop.
         It starts by setting up the game and placing the ships for both players in alternate turns. 
         For each turn, the current player will attemp to hit a tile of the opponent's board. 
@@ -89,5 +89,5 @@ class Game:
         print(f"Game Over! Player {winner.player_num} has won!\n")
         
     def game_stats():
-         '''This function is a placeholder for future implementation of the game statistics which could include total turns, hit rate, accuracy etc. '''
+        '''This function is a placeholder for future implementation of the game statistics which could include total turns, hit rate, accuracy etc. '''
         pass
