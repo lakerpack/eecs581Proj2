@@ -1,3 +1,8 @@
+'''
+Name of the Program: ship.py
+Description: Represents a ship in a battleship game managing it's tiles, identity and destruction status, providing methods for game interactions.
+Date of creation: 9/11/2024
+'''
 class Ship:
     def __init__(self, tiles, id):
         self.tiles = tiles

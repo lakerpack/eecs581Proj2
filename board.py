@@ -1,3 +1,9 @@
+'''
+Name of the Program: board.py
+Description: Board class is an important component for managing the game state, handling game logic and displaying the game boards.
+Date of creation: 9/11/2024
+'''
+
 from ship import Ship
 from tile import Tile
 from util import get_board_pos

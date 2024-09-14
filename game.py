@@ -1,3 +1,8 @@
+'''
+Name of the Program: game.py
+Description: Game class handles the main game logic including setup, turn management, and determining the winner by interacting with the player class.
+Date of creation: 9/11/2024
+'''
 from player import Player
 from util import is_valid_tile
 

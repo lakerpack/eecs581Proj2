@@ -1,3 +1,8 @@
+'''
+Name of the Program: util.py
+Description: Provides functions for for converting board coordinates and validating player inputs.
+Date of creation: 9/11/2024
+'''
 letter_ind_map={
     "A":0,
     "B":1,   

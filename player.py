@@ -1,3 +1,8 @@
+'''
+Name of the Program: player.py
+Description: Player class consists all the necessary functionality for a player in the battleship game including maging their own board, placing ships, handling attacks, and tracking game state.
+Date of creation: 9/11/2024
+'''
 from board import Board
 
 letter_ind_map={

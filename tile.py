@@ -1,3 +1,8 @@
+'''
+Name of the Program: tile.py
+Description: Represents a single square in the battleship game and provides methods to manage the information in a tile.
+Date of creation: 9/11/2024
+'''
 class Tile:
     def __init__(self):
         self.ship_id = None
