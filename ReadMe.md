@@ -1,5 +1,8 @@
 # Battleship Game
 
+### Quick Start and Usage
+You may play Battleship by typing ```python owo.py``` in a command line interface. This assumes you are utilizing Python version 3.12 on a Windows 11 machine.
+
 ### Overview
 The Battleship is a two-player strategy game where both players secretly place ships on a 10x10 grid and take turns firing at the opponent’s ships. The goal is to sink all of the opponent’s ships first.
 
