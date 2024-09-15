@@ -30,6 +30,5 @@ class Tile:
     
     def set_is_hit(self, is_hit):
         '''
-        This function marks whether the tile has been hit in the game. 
-        Returns true if the tile has been hit or, False otherwise. '''
+        This function marks whether the tile has been hit in the game. '''
         self.is_hit = is_hit
