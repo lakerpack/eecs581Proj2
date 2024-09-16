@@ -79,7 +79,7 @@ class Board:
         Also will mark the tile on the opponent's board as hit and will update the shps status if hit.'''
         x, y = get_board_pos(tile)
         self.opponent_board[x][y].is_hit = True
-        self.opponent_board[x][y].is_ship = is_hit
+        self.opponent_board[x][y].is_ship_tile = is_hit
     
     # is_during_game == False => for ship placement section of game
     # is_during_game == True => during the game
@@ -120,7 +120,7 @@ class Board:
             for j in range(10):
                 tile = self.opponent_board[i][j]
                 if tile.is_hit:
-                    print("!" if tile.is_ship else "X", end=" ")
+                    print("!" if tile.is_ship_tile else "X", end=" ")
                 else:
                     print("O", end=" ")
             print("   ", end="")
