@@ -4,13 +4,23 @@ Description: Game class handles the main game logic including setup, turn manage
 Date of creation: 9/11/2024
 '''
 from player import Player
+from bot import Bot
 from util import is_valid_tile
 
 class Game:
     def __init__(self):
         '''This function intializes the game class by creating two players each assigned a player number i.e., 1 & 2. '''
         self.player1 = Player(1)
-        self.player2 = Player(2)
+        self.botGame = False
+        self.player2 = self.botCheck() or Player(2)
+    
+    def botCheck(self):
+        answer = input("Do you wish to play against a bot? (y/n): ").lower()
+        if answer == "y":
+            self.botGame = True
+            return Bot(2)
+        else:
+            return None
 
     def _game_setup(self):
         '''

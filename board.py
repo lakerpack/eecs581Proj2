@@ -19,7 +19,7 @@ class Board:
         self.opponent_board = [[Tile() for i in range(10)] for j in range(10)]
         self.ships = []
     
-    def validate_and_add_ship(self, starting_tile, orientation, ship_length):
+    def validate_and_add_ship(self, starting_tile, orientation, ship_length, bot=False):
         ''' 
         This function will validate and place ships on the player's board. 
         The input will be such that it takes the starting tile, orientation of the tiles (either H for horizontal or V for veritcal), and the length of the ship. 
@@ -48,11 +48,13 @@ class Board:
                 
                 break
             except Exception as e:
+                if bot:
+                    break
                 print(f"Error: {e}")
                 starting_tile = input("Enter a valid starting tile (e.g., B5): ")
                 orientation = input("Enter a valid orientation (H or V): ")
     
-    def perform_hit(self, tile):
+    def perform_hit(self, tile, bot=False):
         ''' 
         This function is for performing a hit on the player's board at the specified tile. 
         Will take the tile input and converts it to board coordinates, and will mark that tile as hit
