@@ -52,10 +52,10 @@ class Player:
             raise Exception("Invalid orientation. Must be 'H' for horizontal or 'V' for vertical")
 
         if orientation == "H":
-            if col + ship_length > 10:
+            if col + ship_length - 1> 10:
                 raise Exception("Invalid placement. Ship goes out of bounds horizontally")
         else:
-            if row + ship_length > 10:
+            if row + ship_length - 1> 10:
                 raise Exception("Invalid placement. Ship goes out of bounds vertically")
 
     def has_lost(self):
