@@ -5,7 +5,7 @@ Date of creation: 9/11/2024
 '''
 from player import Player
 from bot import Bot
-from scoreboard import scoreboard
+from scoreboard import Scoreboard
 
 from util import is_valid_tile
 
