@@ -15,9 +15,10 @@ letter_ind_map={
 }
 
 class Bot:
-    def __init__(self, player_num):
+    def __init__(self, player_num, difficulty):
         self.board = Board()
         self.player_num = player_num
+        self.difficulty = difficulty
 
     def _validate_placement_input(self, placement, ship_length):
         v1 = placement.split(",")
