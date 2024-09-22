@@ -122,9 +122,9 @@ class Game:
 
             if is_hit:
                 if currentOne:
-                    self.scoreboard.updatePlayerOne(len(next_player.board.ships))
+                    self.scoreboard.updatePlayerOne(len([ship for ship in next_player.board.ships if not ship.is_destroyed()]))
                 else:
-                    self.scoreboard.updatePlayerTwo(len(next_player.board.ships))
+                    self.scoreboard.updatePlayerTwo(len([ship for ship in next_player.board.ships if not ship.is_destroyed()]))
 
             cur_player.show_board(True)
             is_game_over = next_player.has_lost()

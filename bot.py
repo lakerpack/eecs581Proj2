@@ -64,7 +64,7 @@ class Bot:
                     self._validate_placement_input(placement, i)
 
                     self.board.validate_and_add_ship(starting_tile, orientation, i, True)
-                    print(f"Bot's ship {i} placed.")
+                    print(f"Bot's ship {i} placed at {placement}.")
                     self.show_board(False)
                     break
                 except Exception as e:

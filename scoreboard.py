@@ -11,6 +11,7 @@ class Scoreboard:
     def updatePlayerOne(self, enemyShips):
         self.playerOnePoints += 1
         self.playerOneShips = self.origCount - enemyShips
+        print(self.origCount, enemyShips)
 
     def updatePlayerTwo(self, enemyShips):
         self.playerTwoPoints += 1
