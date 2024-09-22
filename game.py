@@ -5,6 +5,8 @@ Date of creation: 9/11/2024
 '''
 from player import Player
 from bot import Bot
+from scoreboard import scoreboard
+
 from util import is_valid_tile
 
 import random
@@ -82,7 +84,7 @@ class Game:
                     pass
                 elif self.player2.difficulty == "hard":
                     pass
-                    
+
             if is_valid_tile(tile):
                 return tile
             elif not self.botGame:
