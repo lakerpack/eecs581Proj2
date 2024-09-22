@@ -7,6 +7,8 @@ from player import Player
 from bot import Bot
 from util import is_valid_tile
 
+import random
+
 class Game:
     def __init__(self):
         '''This function intializes the game class by creating two players each assigned a player number i.e., 1 & 2. '''
@@ -64,17 +66,26 @@ class Game:
                 print("Invalid input. Please enter a valid tile to attack (e.g., A1): ")
         return tile
     '''
-    def _get_input_tile(self):
+    def _get_input_tile(self, cur_player):
         ''' 
         This function will ask the current player to input a position where they would like to attack next
         It loops until a valid position is inputed by the player. 
         By using is_valid_tile function, it ensures that the tile format is correct.
         '''
         while True:
-            tile = input("Tile to attack (e.g., A1): ").strip().upper()
+            if cur_player == self.player1:
+                tile = input("Tile to attack (e.g., A1): ").strip().upper()
+            elif self.botGame and cur_player == self.player2:
+                if self.player2.difficulty == "easy":
+                    tile = chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+                elif self.player2.difficulty == "medium":
+                    pass
+                elif self.player2.difficulty == "hard":
+                    pass
+                    
             if is_valid_tile(tile):
                 return tile
-            else:
+            elif not self.botGame:
                 print("Invalid input. Please enter a valid tile to attack (e.g., A1 to J10)")
     
     def run(self):
@@ -94,7 +105,7 @@ class Game:
             cur_player.show_board(True)
             print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
 
-            tile = self._get_input_tile()
+            tile = self._get_input_tile(cur_player)
 
             is_hit = next_player.perform_hit(tile)
             cur_player.record_opponent_hit(tile, is_hit)
