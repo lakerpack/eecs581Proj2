@@ -21,20 +21,23 @@ class Game:
         self.scoreboard = Scoreboard()
     
     def botCheck(self):
-        answer = input("Do you wish to play against a bot? (y/n): ").lower()
-        if answer == "y":
-            self.botGame = True
-            diff = ""
-            while diff.lower() not in {"easy", "medium", "hard"}:
-                print("What difficulty level would you like?")
-                print("  -- Easy")
-                print("  -- Medium")
-                print("  -- Hard 💀")
-                diff = input()
-            print(" ")
-            return Bot(2, diff)
-        else:
-            return None
+        while True:
+            answer = input("Do you wish to play against a bot? (y/n): ").lower()
+            if answer == "y":
+                self.botGame = True
+                diff = ""
+                while diff.lower() not in {"easy", "medium", "hard"}:
+                    print("What difficulty level would you like?")
+                    print("  -- Easy")
+                    print("  -- Medium")
+                    print("  -- Hard 💀")
+                    diff = input()
+                print(" ")
+                return Bot(2, diff)
+            elif answer == "n":
+                return None
+            else:
+                print("Invalid input. \n")
 
     def _game_setup(self):
         '''
