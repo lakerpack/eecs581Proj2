@@ -10,6 +10,7 @@ from scoreboard import Scoreboard
 from util import is_valid_tile
 
 import random
+from itertools import chain
 
 class Game:
     def __init__(self):
@@ -17,6 +18,7 @@ class Game:
         self.player1 = Player(1)
         self.botGame = False
         self.player2 = self.botCheck() or Player(2)
+        self.scoreboard = Scoreboard()
     
     def botCheck(self):
         answer = input("Do you wish to play against a bot? (y/n): ").lower()
@@ -46,6 +48,7 @@ class Game:
         while not num_ships_per_player.isdigit() or not (1 <= int(num_ships_per_player) <= 5):
             num_ships_per_player = input("[Player 1 & 2 | Game Setup] That is not valid. Enter number of ships per player (1-5): ")
         num_ships_per_player = int(num_ships_per_player)
+        self.scoreboard.setShips(num_ships_per_player)
 
         self.player1.place_ships(num_ships_per_player)
         input("Press Enter to switch to Player 2...\n")
@@ -75,7 +78,8 @@ class Game:
         By using is_valid_tile function, it ensures that the tile format is correct.
         '''
         while True:
-            if cur_player == self.player1:
+            tile = ""
+            if cur_player == self.player1 or (cur_player == self.player2 and not self.botGame):
                 tile = input("Tile to attack (e.g., A1): ").strip().upper()
             elif self.botGame and cur_player == self.player2:
                 if self.player2.difficulty == "easy":
@@ -85,6 +89,7 @@ class Game:
                 elif self.player2.difficulty == "hard":
                     pass
 
+            print(tile)
             if is_valid_tile(tile):
                 return tile
             elif not self.botGame:
@@ -99,6 +104,7 @@ class Game:
         self._game_setup()
         cur_player = self.player1
         next_player = self.player2
+        currentOne = True
 
         is_game_over = False
 
@@ -108,22 +114,28 @@ class Game:
             print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
 
             tile = self._get_input_tile(cur_player)
-
             is_hit = next_player.perform_hit(tile)
             cur_player.record_opponent_hit(tile, is_hit)
 
-            cur_player.show_board(True)
+            if is_hit:
+                if currentOne:
+                    self.scoreboard.updatePlayerOne(len(next_player.board.ships))
+                else:
+                    self.scoreboard.updatePlayerTwo(len(next_player.board.ships))
 
+            cur_player.show_board(True)
             is_game_over = next_player.has_lost()
             
             if not is_game_over:
+                if currentOne:
+                    self.scoreboard.printScoreBoard(1)
+                else:
+                    self.scoreboard.printScoreBoard(2)
+
                 input("Press Enter to switch players...\n")
                 cur_player, next_player = next_player, cur_player
+                currentOne = not currentOne
         
         #winner = self.player1 if cur_player.player_num == self.player2.player_num else self.player1
         winner = cur_player
         print(f"Game Over! Player {winner.player_num} has won!\n")
-        
-    def game_stats():
-        '''This function is a placeholder for future implementation of the game statistics which could include total turns, hit rate, accuracy etc. '''
-        pass

@@ -68,7 +68,7 @@ class Bot:
                     self.show_board(False)
                     break
                 except Exception as e:
-                    print(f"Error: {e}. Please try again.")
+                    pass
 
     def perform_hit(self, tile):
         return self.board.perform_hit(tile, True)
