@@ -21,6 +21,9 @@ class Bot:
         self.board = Board()
         self.player_num = player_num
         self.difficulty = difficulty
+        if self.difficulty == "hard":
+            self.enemyBoard = list()
+            self.currentTarget = 0
 
     def _validate_placement_input(self, placement, ship_length):
         v1 = placement.split(",")
@@ -72,8 +75,11 @@ class Bot:
         elif self.difficulty == "medium":
             pass
         elif self.difficulty == "hard":
-            pass
-            
+            currentPos = self.currentTarget
+            target = self.enemyBoard[currentPos]
+            self.currentTarget += 1
+            return target
+
     def place_ships(self, num_ships_per_player):
         print("-------------------------------")
         print()
@@ -95,6 +101,13 @@ class Bot:
                     break
                 except Exception as e:
                     pass
+
+    def populateEnemy(self, enemyBoard):
+        for i in range(len(enemyBoard.board)):
+            for j in range(len(enemyBoard.board[0])):
+                if enemyBoard.board[i][j].is_ship():
+                    self.enemyBoard.append(f"{chr(i+65)}{j+1}")
+        print(self.enemyBoard)
 
     def perform_hit(self, tile):
         return self.board.perform_hit(tile, True)

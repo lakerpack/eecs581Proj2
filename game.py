@@ -56,7 +56,7 @@ class Game:
         print()
         print()
         print()
-
+        
         self.player2.place_ships(num_ships_per_player)
         input("Press Enter to start the game...\n")
         print()
@@ -99,6 +99,9 @@ class Game:
         For each turn, the current player will attemp to hit a tile of the opponent's board. 
         The game will come to a stop when one of the player's ships are completely destroyed by the opponent.'''
         self._game_setup()
+        if self.botGame and self.player2.difficulty == "hard":
+            self.player2.populateEnemy(self.player1.board)
+
         cur_player = self.player1
         next_player = self.player2
         currentOne = True
