@@ -73,7 +73,7 @@ class Bot:
         if self.difficulty == "easy":
             return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
         elif self.difficulty == "medium":
-            pass
+            pass # NATHAN
         elif self.difficulty == "hard":
             currentPos = self.currentTarget
             target = self.enemyBoard[currentPos]
@@ -107,7 +107,6 @@ class Bot:
             for j in range(len(enemyBoard.board[0])):
                 if enemyBoard.board[i][j].is_ship():
                     self.enemyBoard.append(f"{chr(i+65)}{j+1}")
-        print(self.enemyBoard)
 
     def perform_hit(self, tile):
         return self.board.perform_hit(tile, True)
