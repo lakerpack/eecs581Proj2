@@ -49,10 +49,12 @@ class Board:
                 break
             except Exception as e:
                 if bot:
-                    break
-                print(f"Error: {e}")
-                starting_tile = input("Enter a valid starting tile (e.g., B5): ")
-                orientation = input("Enter a valid orientation (H or V): ")
+                    starting_tile = starting_tile = chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+                    orientation = random.choice(['H', 'V'])
+                else:
+                    print(f"Error: {e}")
+                    starting_tile = input("Enter a valid starting tile (e.g., B5): ")
+                    orientation = input("Enter a valid orientation (H or V): ")
     
     def perform_hit(self, tile, bot=False):
         ''' 

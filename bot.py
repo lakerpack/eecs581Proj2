@@ -1,5 +1,7 @@
 from board import Board
+
 import random
+from time import sleep
 
 letter_ind_map={
     "A":0,
@@ -19,6 +21,9 @@ class Bot:
         self.board = Board()
         self.player_num = player_num
         self.difficulty = difficulty
+        if self.difficulty == "hard":
+            self.enemyBoard = list()
+            self.currentTarget = 0
 
     def _validate_placement_input(self, placement, ship_length):
         v1 = placement.split(",")
@@ -45,8 +50,35 @@ class Bot:
             if row + ship_length - 1 > 10:
                 raise Exception("Invalid placement. Ship goes out of bounds vertically")
 
+    def thinking(self):
+        print("Bot opponent is thinking", end = "", flush=True)
+        sleep(0.6)
+        print(".", end = "", flush=True)
+        sleep(0.55)
+        print(".", end = "", flush=True)
+        sleep(0.50)
+        print(".", end = "", flush=True)
+        sleep(0.45)
+        print(".", end = "", flush=True)
+        sleep(0.40)
+
+    def declareChoice(self, tile):
+        print(f" it picks {tile}")
+        sleep(1)
+
     def has_lost(self):
         return self.board.are_ships_destroyed()
+
+    def attackTile(self):
+        if self.difficulty == "easy":
+            return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+        elif self.difficulty == "medium":
+            pass # NATHAN
+        elif self.difficulty == "hard":
+            currentPos = self.currentTarget
+            target = self.enemyBoard[currentPos]
+            self.currentTarget += 1
+            return target
 
     def place_ships(self, num_ships_per_player):
         print("-------------------------------")
@@ -64,11 +96,17 @@ class Bot:
                     self._validate_placement_input(placement, i)
 
                     self.board.validate_and_add_ship(starting_tile, orientation, i, True)
-                    print(f"Bot's ship {i} placed.")
+                    print(f"Bot's ship {i} placed at {placement}.")
                     self.show_board(False)
                     break
                 except Exception as e:
-                    print(f"Error: {e}. Please try again.")
+                    pass
+
+    def populateEnemy(self, enemyBoard):
+        for i in range(len(enemyBoard.board)):
+            for j in range(len(enemyBoard.board[0])):
+                if enemyBoard.board[i][j].is_ship():
+                    self.enemyBoard.append(f"{chr(i+65)}{j+1}")
 
     def perform_hit(self, tile):
         return self.board.perform_hit(tile, True)
