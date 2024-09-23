@@ -6,11 +6,9 @@ Date of creation: 9/11/2024
 from player import Player
 from bot import Bot
 from scoreboard import Scoreboard
-
 from util import is_valid_tile
 
 import random
-from itertools import chain
 
 class Game:
     def __init__(self):
@@ -85,15 +83,11 @@ class Game:
             if cur_player == self.player1 or (cur_player == self.player2 and not self.botGame):
                 tile = input("Tile to attack (e.g., A1): ").strip().upper()
             elif self.botGame and cur_player == self.player2:
-                if self.player2.difficulty == "easy":
-                    tile = chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
-                elif self.player2.difficulty == "medium":
-                    pass
-                elif self.player2.difficulty == "hard":
-                    pass
+                tile = cur_player.attackTile()
 
-            print(tile)
             if is_valid_tile(tile):
+                if cur_player == self.player2 and self.botGame:
+                    cur_player.declareChoice(tile)
                 return tile
             elif not self.botGame:
                 print("Invalid input. Please enter a valid tile to attack (e.g., A1 to J10)")
@@ -115,6 +109,9 @@ class Game:
             print(f"Player {cur_player.player_num}'s turn\n")
             cur_player.show_board(True)
             print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
+
+            if cur_player == self.player2 and self.botGame:
+                cur_player.thinking()
 
             tile = self._get_input_tile(cur_player)
             is_hit = next_player.perform_hit(tile)

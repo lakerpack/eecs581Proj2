@@ -1,5 +1,7 @@
 from board import Board
+
 import random
+from time import sleep
 
 letter_ind_map={
     "A":0,
@@ -45,9 +47,33 @@ class Bot:
             if row + ship_length - 1 > 10:
                 raise Exception("Invalid placement. Ship goes out of bounds vertically")
 
+    def thinking(self):
+        print("Bot opponent is thinking", end = "", flush=True)
+        sleep(0.6)
+        print(".", end = "", flush=True)
+        sleep(0.55)
+        print(".", end = "", flush=True)
+        sleep(0.50)
+        print(".", end = "", flush=True)
+        sleep(0.45)
+        print(".", end = "", flush=True)
+        sleep(0.40)
+
+    def declareChoice(self, tile):
+        print(f" it picks {tile}")
+        sleep(1)
+
     def has_lost(self):
         return self.board.are_ships_destroyed()
 
+    def attackTile(self):
+        if self.difficulty == "easy":
+            return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+        elif self.difficulty == "medium":
+            pass
+        elif self.difficulty == "hard":
+            pass
+            
     def place_ships(self, num_ships_per_player):
         print("-------------------------------")
         print()

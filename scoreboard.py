@@ -11,7 +11,6 @@ class Scoreboard:
     def updatePlayerOne(self, enemyShips):
         self.playerOnePoints += 1
         self.playerOneShips = self.origCount - enemyShips
-        print(self.origCount, enemyShips)
 
     def updatePlayerTwo(self, enemyShips):
         self.playerTwoPoints += 1
@@ -23,9 +22,10 @@ class Scoreboard:
     def printScoreBoard(self, player):
         print(" ")
         if player == 1:
-            print(f"Player One's points: {self.playerOnePoints}")
-            print(f"Player One has sunk {self.playerOneShips} thus far")
+            print(f"===== Player One's points: {self.playerOnePoints} =====")
+            print(f"===== Player One has sunk {self.playerOneShips} thus far =====")
         else:
-            print(f"Player Two's points: {self.playerTwoPoints}")
-            print(f"Player Two has sunk {self.playerTwoShips} thus far")
+            print(f"===== Player Two's points: {self.playerTwoPoints} =====")
+            print(f"===== Player Two has sunk {self.playerTwoShips} thus far =====")
+        print(f"** Player One: {self.playerOnePoints} ({self.playerOneShips}) vs Player Two: {self.playerTwoPoints} ({self.playerTwoShips}) **")
         print(" ")
