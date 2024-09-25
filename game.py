@@ -29,7 +29,7 @@ class Game:
                     print("  -- Easy")
                     print("  -- Medium")
                     print("  -- Hard 💀")
-                    diff = input()
+                    diff = input().lower()
                 print(" ")
                 return Bot(2, diff)
             elif answer == "n":
@@ -116,9 +116,18 @@ class Game:
             if cur_player == self.player2 and self.botGame:
                 cur_player.thinking()
 
+            prev_ship_count = len([ship for ship in next_player.board.ships if not ship.is_destroyed()])
+
             tile = self._get_input_tile(cur_player)
             is_hit = next_player.perform_hit(tile)
             cur_player.record_opponent_hit(tile, is_hit)
+            if cur_player == self.player2 and self.botGame and self.player2.difficulty == "medium": #n
+                self.player2.past_shots.append(tile)
+                if is_hit and tile not in self.player2.past_shots:
+                    self.player2.last_hit = tile
+                    self.player2.targeting_ship = True
+                if len([ship for ship in next_player.board.ships if not ship.is_destroyed()]) < prev_ship_count:
+                    self.player2.targeting_ship = False
 
             if is_hit:
                 if currentOne:

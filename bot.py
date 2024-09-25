@@ -1,4 +1,6 @@
 from board import Board
+from tile import Tile
+from util import is_valid_tile
 
 import random
 from time import sleep
@@ -24,6 +26,9 @@ class Bot:
         if self.difficulty == "hard":
             self.enemyBoard = list()
             self.currentTarget = 0
+        self.targeting_ship = False #n
+        self.last_hit = ""
+        self.past_shots = list()
 
     def _validate_placement_input(self, placement, ship_length):
         v1 = placement.split(",")
@@ -72,8 +77,50 @@ class Bot:
     def attackTile(self):
         if self.difficulty == "easy":
             return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+
         elif self.difficulty == "medium":
-            pass # NATHAN
+
+            if not self.targeting_ship:
+                print("picking random spot")
+                return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
+
+            elif self.targeting_ship:
+                print("locked onto a ship")
+                # Reverse map to go from index back to letter
+                ind_letter_map = {v: k for k, v in letter_ind_map.items()}
+
+                # Split the last_hit into letter and number
+                letter = self.last_hit[0]
+                number = int(self.last_hit[1:])  # Extract the numeric part of the coordinate
+
+                # Get the index of the letter
+                row = letter_ind_map[letter]
+                col = number - 1  # Convert to zero-based index for easier manipulation
+
+                # Define the four orthogonal movements (up, right, down, left)
+                orthogonal_moves = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+                # To store the resulting orthogonal positions
+                orthogonal_positions = []
+
+                # Loop through each orthogonal move
+                for move in orthogonal_moves:
+                    new_row = row + move[0]
+                    new_col = col + move[1]
+
+                    # Ensure the new position is within bounds (0 <= row <= 9, 0 <= col <= 9)
+                    if 0 <= new_row <= 9 and 0 <= new_col <= 9:
+                        new_letter = ind_letter_map[new_row]  # Get the letter for the new row
+                        new_number = new_col + 1  # Convert back to 1-based index
+                        if is_valid_tile(f"{new_letter}{new_number}"):
+                            if f"{new_letter}{new_number}" not in self.past_shots:
+                                orthogonal_positions.append(f"{new_letter}{new_number}")
+                if len(orthogonal_positions) == 0:
+                    print("out of orthogonal guesses, going back to random")
+                    return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
+                print(orthogonal_positions)
+                return orthogonal_positions[random.randint(0, len(orthogonal_positions) - 1)]
+
         elif self.difficulty == "hard":
             currentPos = self.currentTarget
             target = self.enemyBoard[currentPos]
