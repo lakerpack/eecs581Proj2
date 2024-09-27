@@ -34,4 +34,21 @@ The Battleship is a two-player strategy game where both players secretly place s
    - The game ends when one player sinks all of the opponent's ships and is declared the winner.
 
 
+## Latest Update
 
+### AI Opponents:
+
+-   **Easy Mode**: AI fires randomly each turn.
+-   **Medium Mode**: AI fires randomly until it hits a ship, then targets adjacent spaces until the ship is sunk.
+-   **Hard Mode**: AI knows the location of all ships and lands a hit every turn.
+
+### Custom Addition: Scoreboard
+
+A new scoreboard feature has been implemented to enhance the gameplay experience. This scoreboard tracks each player's points and the number of ships they've sunk.
+
+### Scoreboard Features:
+
+-   **Player Points**: Tracks the points for Player One and Player Two.
+-   **Ships Sunk**: Displays how many enemy ships each player has sunk during the game.
+
+The scoreboard is updated every time a player sinks an enemy ship and can be displayed at any point during the game.
