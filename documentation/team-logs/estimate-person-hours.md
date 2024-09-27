@@ -1,3 +1,5 @@
+# Estimated Person-Hours for Battleship Game (EECS 581 Project 2)
+
 ## Estimation Methodology
 
 We considered the complexity of adding game features such as a scoreboard and AI implementation with levels of difficulty (easy, medium, hard). We also allocated time for coding, testing, documentation, and meetings.
