@@ -1,0 +1,46 @@
+# Michelle's Work Log
+
+## Daily Accounting of Hours
+
+-   **Day 1 (Sept 16)**:
+    -   Task:
+    -   Hours:
+-   **Day 2 (Sept 17)**:
+    -   Task:
+    -   Hours:
+-   **Day 3 (Sept 18)**:
+    -   Task:
+    -   Hours:
+-   **Day 4 (Sept 19)**:
+    -   Task:
+    -   Hours:
+-   **Day 5 (Sept 20)**:
+    -   Task:
+    -   Hours:
+-   **Day 6 (Sept 21)**:
+    -   Task:
+    -   Hours:
+-   **Day 7 (Sept 22)**:
+    -   Task:
+    -   Hours:
+-   **Day 8 (Sept 23)**:
+    -   Task:
+    -   Hours:
+-   **Day 9 (Sept 24)**:
+    -   Task:
+    -   Hours:
+-   **Day 10 (Sept 25)**:
+    -   Task:
+    -   Hours:
+-   **Day 11 (Sept 26)**:
+    -   Task:
+    -   Hours:
+-   **Day 12 (Sept 27)**:
+    -   Task:
+    -   Hours:
+-   **Day 13 (Sept 28)**:
+    -   Task:
+    -   Hours:
+-   **Day 14 (Sept 29)**:
+    -   Task:
+    -   Hours:
