@@ -3,17 +3,17 @@
 ## Daily Accounting of Hours
 
 -   **Day 1 (Sept 16)**:
-    -   Task:
-    -   Hours:
+    -   Task: GTA Meeting and Meeting with Team
+    -   Hours: 1
 -   **Day 2 (Sept 17)**:
-    -   Task:
+    -   Task: 
     -   Hours:
 -   **Day 3 (Sept 18)**:
     -   Task:
     -   Hours:
 -   **Day 4 (Sept 19)**:
-    -   Task:
-    -   Hours:
+    -   Task: 
+    -   Hours: 
 -   **Day 5 (Sept 20)**:
     -   Task:
     -   Hours:
@@ -27,11 +27,11 @@
     -   Task:
     -   Hours:
 -   **Day 9 (Sept 24)**:
-    -   Task:
-    -   Hours:
+    -   Task: Inspecting code, figuring out the structure based on the documentation
+    -   Hours: 2
 -   **Day 10 (Sept 25)**:
-    -   Task:
-    -   Hours:
+    -   Task: Programming the medium bot, slight alterations to the code for convenience
+    -   Hours: 4
 -   **Day 11 (Sept 26)**:
     -   Task:
     -   Hours:
@@ -39,7 +39,7 @@
     -   Task:
     -   Hours:
 -   **Day 13 (Sept 28)**:
-    -   Task:
+    -   Task: Commenting on code, Documentation
     -   Hours:
 -   **Day 14 (Sept 29)**:
     -   Task:
