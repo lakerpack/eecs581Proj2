@@ -3,8 +3,8 @@
 ## Daily Accounting of Hours
 
 -   **Day 1 (Sept 16)**:
-    -   Task:
-    -   Hours:
+    -   Task: GTA Meeting and Meeting with Team
+    -   Hours: 1
 -   **Day 2 (Sept 17)**:
     -   Task:
     -   Hours:
@@ -39,8 +39,8 @@
     -   Task:
     -   Hours:
 -   **Day 13 (Sept 28)**:
-    -   Task:
-    -   Hours:
+    -   Task: Add documentation, update ReadME, add estimated/actual hours
+    -   Hours: 2
 -   **Day 14 (Sept 29)**:
-    -   Task:
-    -   Hours:
+    -   Task: Update actual hours
+    -   Hours: 0.5
