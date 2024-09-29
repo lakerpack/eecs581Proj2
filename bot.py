@@ -1,4 +1,6 @@
 from board import Board
+from tile import Tile
+from util import is_valid_tile
 
 import random
 from time import sleep
@@ -24,6 +26,13 @@ class Bot:
         if self.difficulty == "hard":
             self.enemyBoard = list()
             self.currentTarget = 0
+        '''
+        (N) Variables that check if the medium bot is locked onto a ship, the last recorded hit on a tile, 
+        and the list of past shots so the bot doesn't shoot spots that have been shot before when locked onto a ship
+        '''
+        self.targeting_ship = False 
+        self.last_hit = ""
+        self.past_shots = list()
 
     def _validate_placement_input(self, placement, ship_length):
         v1 = placement.split(",")
@@ -72,8 +81,43 @@ class Bot:
     def attackTile(self):
         if self.difficulty == "easy":
             return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+
+        '''
+        (N) Dictating how the bot will attack if it is a medium bot. Looking to see if a tile has been hit last turn based on the targeting_ship variable. 
+        If that is the case, it will shoot orthogonal tiles to the last recorded hit. 
+        Will not shooting at spots that have already been shot before when shooting orthogonal tiles.
+        sources: recording of orthogonal tiles partially taken from ChatGPT
+        '''
         elif self.difficulty == "medium":
-            pass # NATHAN
+            
+            if not self.targeting_ship: #(N) if it is not targeting a ship right now then just shoot randomly
+                print("picking random spot")
+                return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
+
+            elif self.targeting_ship: #(N) if it is targeting a ship then shoot orthogonal positions to the tile
+                print("locked onto a ship")
+                ind_letter_map = {v: k for k, v in letter_ind_map.items()} #(N) Mapping to use the letter coordinate as an indice
+                letter = self.last_hit[0] #(N) take out the letter coord and the number coord
+                number = int(self.last_hit[1:]) 
+                row = letter_ind_map[letter] #(N) row and column coord based on the letter and # taken out
+                col = number - 1
+                orthogonal_moves = [(-1, 0), (0, 1), (1, 0), (0, -1)] #(N) list of possible orthogonal tiles 
+                orthogonal_positions = [] #(N) list that holds the possible orthogonal positions
+                for move in orthogonal_moves: #(N) loop that creates the letter and number coordinates for the orthogonal moves to the current tile
+                    new_row = row + move[0]
+                    new_col = col + move[1]
+                    if 0 <= new_row <= 9 and 0 <= new_col <= 9:
+                        new_letter = ind_letter_map[new_row]
+                        new_number = new_col + 1
+                        if is_valid_tile(f"{new_letter}{new_number}"): #(N) nested if statements ensure that the shots are valid and not a tile that has already been shot
+                            if f"{new_letter}{new_number}" not in self.past_shots:
+                                orthogonal_positions.append(f"{new_letter}{new_number}")
+                if len(orthogonal_positions) == 0: #(N) if there are not orthogonal positions left then go back to shooting randomly
+                    print("out of orthogonal guesses, going back to random")
+                    return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
+                print(orthogonal_positions)
+                return orthogonal_positions[random.randint(0, len(orthogonal_positions) - 1)]
+
         elif self.difficulty == "hard":
             currentPos = self.currentTarget
             target = self.enemyBoard[currentPos]
