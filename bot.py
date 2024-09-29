@@ -1,3 +1,9 @@
+'''
+Name of the Program: scoreboard.py
+Description: Player class duplicate but removes any user input and automates placement. Also has 3 different modes for targetting the other board. 
+Date of creation: 9/22/2024
+'''
+
 from board import Board
 from tile import Tile
 from util import is_valid_tile

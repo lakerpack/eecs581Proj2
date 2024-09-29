@@ -1,3 +1,8 @@
+'''
+Name of the Program: scoreboard.py
+Description: Stores score/ship sunk data and calcualtes the current score for the round. Also updates any data and validates scores.
+Date of creation: 9/22/2024
+'''
 class Scoreboard:
     def __init__(self):
         self.playerOnePoints = 0
