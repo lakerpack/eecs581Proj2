@@ -81,7 +81,6 @@ class Bot:
     def attackTile(self):
         if self.difficulty == "easy":
             return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
-
         elif self.difficulty == "medium":
             '''
             (N) Dictating how the bot will attack if it is a medium bot. Looking to see if a tile has been hit last turn based on the targeting_ship variable. 

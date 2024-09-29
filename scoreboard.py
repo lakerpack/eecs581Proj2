@@ -8,13 +8,20 @@ class Scoreboard:
 
         self.origCount = 0
 
-    def updatePlayerOne(self, enemyShips):
-        self.playerOnePoints += 1
-        self.playerOneShips = self.origCount - enemyShips
+        self.oneHit = set()
+        self.twoHit = set()
 
-    def updatePlayerTwo(self, enemyShips):
-        self.playerTwoPoints += 1
-        self.playerTwoShips = self.origCount - enemyShips
+    def updatePlayerOne(self, tile, enemyShips):
+        if tile not in self.oneHit:
+            self.playerOnePoints += 1
+            self.playerOneShips = self.origCount - enemyShips
+            self.oneHit.add(tile)
+
+    def updatePlayerTwo(self, tile, enemyShips):
+        if tile not in self.twoHit:
+            self.playerTwoPoints += 1
+            self.playerTwoShips = self.origCount - enemyShips
+            self.twoHit.add(tile)
 
     def setShips(self, numShips):
         self.origCount = numShips
