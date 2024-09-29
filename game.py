@@ -14,26 +14,26 @@ class Game:
     def __init__(self):
         '''This function intializes the game class by creating two players each assigned a player number i.e., 1 & 2. '''
         self.player1 = Player(1)
-        self.botGame = False
-        self.player2 = self.botCheck() or Player(2)
-        self.scoreboard = Scoreboard()
+        self.botGame = False # (A) var to check if it's a bot game
+        self.player2 = self.botCheck() or Player(2) # (A) botCheck() to ask user if they want bot, otherwise initialize player 2 
+        self.scoreboard = Scoreboard() # (A) scoreboard initialization
     
     def botCheck(self):
         while True:
-            answer = input("Do you wish to play against a bot? (y/n): ").lower()
+            answer = input("Do you wish to play against a bot? (y/n): ").lower() # (A) ask user if they want to play against a bot
             if answer == "y":
                 self.botGame = True
                 diff = ""
-                while diff.lower() not in {"easy", "medium", "hard"}:
+                while diff.lower() not in {"easy", "medium", "hard"}: # (A) loop until they provide a valid answer for difficulty
                     print("What difficulty level would you like?")
                     print("  -- Easy")
                     print("  -- Medium")
                     print("  -- Hard 💀")
                     diff = input().lower()
                 print(" ")
-                return Bot(2, diff)
+                return Bot(2, diff) # (A) return the bot object with player num 2 and diff chosen
             elif answer == "n":
-                return None
+                return None # (A) otherwise return None so it intializes a player instead
             else:
                 print("Invalid input. \n")
 
@@ -57,7 +57,7 @@ class Game:
         print()
         print()
         
-        self.player2.place_ships(num_ships_per_player)
+        self.player2.place_ships(num_ships_per_player) # (A) will prompt the bot to choose their tiles randomly if it's a bot
         input("Press Enter to start the game...\n")
         print()
         print()
@@ -99,12 +99,12 @@ class Game:
         For each turn, the current player will attemp to hit a tile of the opponent's board. 
         The game will come to a stop when one of the player's ships are completely destroyed by the opponent.'''
         self._game_setup()
-        if self.botGame and self.player2.difficulty == "hard":
-            self.player2.populateEnemy(self.player1.board)
+        if self.botGame and self.player2.difficulty == "hard": # (A) if the player wanted to do a hard bot
+            self.player2.populateEnemy(self.player1.board) # (A) we now populate the bot's enemyboard var with their placements
 
         cur_player = self.player1
         next_player = self.player2
-        currentOne = True
+        currentOne = True # (A) scoreboard var to check which player to update/print
 
         is_game_over = False
 
@@ -113,8 +113,8 @@ class Game:
             cur_player.show_board(True)
             print('"X" indicates a miss, "!" indicates a hit, and ship tiles are identified by their length.')
 
-            if cur_player == self.player2 and self.botGame:
-                cur_player.thinking()
+            if cur_player == self.player2 and self.botGame: # (A) if it's a bot, we have some waiting time until they give input
+                cur_player.thinking() # (A) thinking . . . 
 
             prev_ship_count = len([ship for ship in next_player.board.ships if not ship.is_destroyed()])
 
@@ -132,16 +132,16 @@ class Game:
                 if len([ship for ship in next_player.board.ships if not ship.is_destroyed()]) < prev_ship_count: #(N) once a ship is destroyed stop targeting. Checked by comparing the previous count of ships to the current count of ships to see if the count went down.
                     self.player2.targeting_ship = False
 
-            if is_hit:
-                if currentOne:
-                    self.scoreboard.updatePlayerOne(tile, len([ship for ship in next_player.board.ships if not ship.is_destroyed()]))
+            if is_hit: # (A) if player was hit
+                if currentOne: # (A) check which player it was
+                    self.scoreboard.updatePlayerOne(tile, len([ship for ship in next_player.board.ships if not ship.is_destroyed()])) # (A) validate tile and new score in scoreboard
                 else:
                     self.scoreboard.updatePlayerTwo(tile, len([ship for ship in next_player.board.ships if not ship.is_destroyed()]))
 
             cur_player.show_board(True)
             is_game_over = next_player.has_lost()
             
-            if not is_game_over:
+            if not is_game_over: # (A) if the game isn't over then print the sccoreboard
                 if currentOne:
                     self.scoreboard.printScoreBoard(1)
                 else:
