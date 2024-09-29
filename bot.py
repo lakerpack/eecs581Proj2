@@ -28,10 +28,10 @@ class Bot:
     def __init__(self, player_num, difficulty):
         self.board = Board()
         self.player_num = player_num
-        self.difficulty = difficulty
-        if self.difficulty == "hard":
+        self.difficulty = difficulty # (A) used to keep track of difficulty
+        if self.difficulty == "hard": # (A) if the difficulty is hard, then we'll start keeping track of the enemy's board
             self.enemyBoard = list()
-            self.currentTarget = 0
+            self.currentTarget = 0 # (A) pointer for which tile to start with, starts with the first tile then increments
         '''
         (N) Variables that check if the medium bot is locked onto a ship, the last recorded hit on a tile, 
         and the list of past shots so the bot doesn't shoot spots that have been shot before when locked onto a ship
@@ -65,7 +65,7 @@ class Bot:
             if row + ship_length - 1 > 10:
                 raise Exception("Invalid placement. Ship goes out of bounds vertically")
 
-    def thinking(self):
+    def thinking(self): # (A) printing like a bot
         print("Bot opponent is thinking", end = "", flush=True)
         sleep(0.6)
         print(".", end = "", flush=True)
@@ -77,7 +77,7 @@ class Bot:
         print(".", end = "", flush=True)
         sleep(0.40)
 
-    def declareChoice(self, tile):
+    def declareChoice(self, tile): # (A) declaring what tile was chosen
         print(f" it picks {tile}")
         sleep(1)
 
@@ -85,8 +85,8 @@ class Bot:
         return self.board.are_ships_destroyed()
 
     def attackTile(self):
-        if self.difficulty == "easy":
-            return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
+        if self.difficulty == "easy": # (A) if difficulty is easy then
+            return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10)) # return random char from A-J appended with random int from 1-10
         elif self.difficulty == "medium":
             '''
             (N) Dictating how the bot will attack if it is a medium bot. Looking to see if a tile has been hit last turn based on the targeting_ship variable. 
@@ -122,11 +122,11 @@ class Bot:
                 print(orthogonal_positions)
                 return orthogonal_positions[random.randint(0, len(orthogonal_positions) - 1)]
 
-        elif self.difficulty == "hard":
-            currentPos = self.currentTarget
-            target = self.enemyBoard[currentPos]
-            self.currentTarget += 1
-            return target
+        elif self.difficulty == "hard": # (A) if difficulty is hard
+            currentPos = self.currentTarget 
+            target = self.enemyBoard[currentPos] # (A) chose target from the enemy's board
+            self.currentTarget += 1 # (A) increment pointer to go next
+            return target # (A) return target for the hit function
 
     def place_ships(self, num_ships_per_player):
         print("-------------------------------")
@@ -136,25 +136,25 @@ class Bot:
             while True:
                 try:
                     print()
-                    starting_tile = chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
-                    orientation = random.choice(['H', 'V'])
-                    placement = starting_tile + "," + orientation
+                    starting_tile = chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10)) # (A) random tile placement, random A-J and random 1-10 uses same randomness as targetting for easy
+                    orientation = random.choice(['H', 'V']) # (A) pick a random orientation from H, V
+                    placement = starting_tile + "," + orientation # (A) concatenate so it can be used in the placement validation
                     
                     # print(placement)
                     self._validate_placement_input(placement, i)
 
                     self.board.validate_and_add_ship(starting_tile, orientation, i, True)
-                    print(f"Bot's ship {i} placed at {placement}.")
-                    self.show_board(False)
+                    print(f"Bot's ship {i} placed at {placement}.") # (A) once validated, declare where the bot has placed their tile
+                    self.show_board(False) # (A) show the current board for the bot
                     break
                 except Exception as e:
-                    pass
+                    pass # (A) typically we'd have another manual input or feedback here, but for bot it'll keep repeating
 
-    def populateEnemy(self, enemyBoard):
-        for i in range(len(enemyBoard.board)):
+    def populateEnemy(self, enemyBoard): # (A) fill up the bot's hit list if the difficulty is hard
+        for i in range(len(enemyBoard.board)): # (A) iterate through all the tiles of the board
             for j in range(len(enemyBoard.board[0])):
-                if enemyBoard.board[i][j].is_ship():
-                    self.enemyBoard.append(f"{chr(i+65)}{j+1}")
+                if enemyBoard.board[i][j].is_ship(): # (A) check if the current tile is a ship
+                    self.enemyBoard.append(f"{chr(i+65)}{j+1}") # (A) use chr(i+65) to convert row to A-J
 
     def perform_hit(self, tile):
         return self.board.perform_hit(tile, True)
