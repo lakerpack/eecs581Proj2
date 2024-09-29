@@ -82,14 +82,13 @@ class Bot:
         if self.difficulty == "easy":
             return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1,10))
 
-        '''
-        (N) Dictating how the bot will attack if it is a medium bot. Looking to see if a tile has been hit last turn based on the targeting_ship variable. 
-        If that is the case, it will shoot orthogonal tiles to the last recorded hit. 
-        Will not shooting at spots that have already been shot before when shooting orthogonal tiles.
-        sources: recording of orthogonal tiles partially taken from ChatGPT
-        '''
         elif self.difficulty == "medium":
-            
+            '''
+            (N) Dictating how the bot will attack if it is a medium bot. Looking to see if a tile has been hit last turn based on the targeting_ship variable. 
+            If that is the case, it will shoot orthogonal tiles to the last recorded hit. 
+            Will not shooting at spots that have already been shot before when shooting orthogonal tiles.
+            sources: recording of orthogonal tiles partially taken from ChatGPT
+            '''
             if not self.targeting_ship: #(N) if it is not targeting a ship right now then just shoot randomly
                 print("picking random spot")
                 return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
