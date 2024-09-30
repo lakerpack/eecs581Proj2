@@ -12,8 +12,8 @@
     -   Task:
     -   Hours:
 -   **Day 4 (Sept 19)**:
-    -   Task:
-    -   Hours:
+    -   Task: Tested code before we added out changes to make sure given code worked
+    -   Hours: 1
 -   **Day 5 (Sept 20)**:
     -   Task:
     -   Hours:
