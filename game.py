@@ -125,12 +125,12 @@ class Game:
             (N) basic functionality for the medium bot for recording hits and dictating the behavior to the bot class
             '''
             if cur_player == self.player2 and self.botGame and self.player2.difficulty == "medium": #(N) If the player is playing against a medium bot and it is the bot's turn
-                self.player2.past_shots.append(tile) #(N) the bot should add this current tile it is shooting to the list of past shots
                 if is_hit and tile not in self.player2.past_shots: #(N) checks for hit and if it is a hit that has not been performed before on a ship, then turn the medium bot on to shooting orthogonally to the current tile. Record current tile in last_hit
                     self.player2.last_hit = tile
                     self.player2.targeting_ship = True
                 if len([ship for ship in next_player.board.ships if not ship.is_destroyed()]) < prev_ship_count: #(N) once a ship is destroyed stop targeting. Checked by comparing the previous count of ships to the current count of ships to see if the count went down.
                     self.player2.targeting_ship = False
+                self.player2.past_shots.append(tile) #(N) the bot should add this current tile it is shooting to the list of past shots
 
             if is_hit: # (A) if player was hit
                 if currentOne: # (A) check which player it was

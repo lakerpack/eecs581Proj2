@@ -97,7 +97,6 @@ class Bot:
             if not self.targeting_ship: #(N) if it is not targeting a ship right now then just shoot randomly
                 print("picking random spot")
                 return chr(random.randint(ord('A'), ord('J'))) + str(random.randint(1, 10))
-
             elif self.targeting_ship: #(N) if it is targeting a ship then shoot orthogonal positions to the tile
                 print("locked onto a ship")
                 ind_letter_map = {v: k for k, v in letter_ind_map.items()} #(N) Mapping to use the letter coordinate as an indice
