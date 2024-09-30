@@ -23,5 +23,5 @@ This document details the actual person-hours spent on the project, recorded day
 
 ## Comparison to Estimate
 
--   **Total Estimated Hours:** 26 hours
--   **Total Actual Logged Hours:** 24.5 hours
+-   **Total Estimated Hours:** 26 hours 40.5 minutes
+-   **Total Actual Logged Hours:** 24 hours 30 minutes
