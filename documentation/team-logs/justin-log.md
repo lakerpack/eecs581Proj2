@@ -3,8 +3,8 @@
 ## Daily Accounting of Hours
 
 -   **Day 1 (Sept 16)**:
-    -   Task:
-    -   Hours:
+    -   Task: GTA meeting and team meeting
+    -   Hours: 1
 -   **Day 2 (Sept 17)**:
     -   Task:
     -   Hours:
@@ -39,8 +39,8 @@
     -   Task:
     -   Hours:
 -   **Day 13 (Sept 28)**:
-    -   Task:
-    -   Hours:
+    -   Task: Testing 
+    -   Hours: 1.5 
 -   **Day 14 (Sept 29)**:
-    -   Task:
-    -   Hours:
+    -   Task: Testing 
+    -   Hours: 0.75
